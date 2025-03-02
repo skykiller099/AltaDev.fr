@@ -1,0 +1,565 @@
+/* projet.css */
+/* Styles de base et reset */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background-color: #0a0a0a;
+}
+
+/* Conteneur de défilement */
+.scroll-container {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    z-index: 1;
+}
+
+/* Styles communs pour toutes les pages de projet */
+.projet-page {
+    background-color: #0a0a0a;
+    color: #ffffff;
+}
+
+/* Ajustement pour la barre de navigation */
+main {
+    padding-top: 80px;
+}
+
+.projet-hero {
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.projet-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.projet-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.projet-hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.projet-tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.projet-overview,
+.projet-demo,
+.projet-testimonial {
+    padding: 5rem 0;
+    position: relative;
+    z-index: 2;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+}
+
+.feature i {
+    font-size: 3rem;
+    color: #ff3333;
+    margin-bottom: 1rem;
+}
+
+.demo-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.demo-video {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.demo-video video {
+    width: 100%;
+    display: block;
+}
+
+.demo-text {
+    flex: 1;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #ff3333;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #cc0000;
+}
+
+.projet-testimonial {
+    background: rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+blockquote {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+cite {
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+/* Styles globaux pour AltaQuest */
+.altaquest {
+    background: linear-gradient(135deg, #000000, #001f3f, #0a2472);
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Effet d'étoiles scintillantes */
+.altaquest::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkle 5s infinite;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+@keyframes twinkle {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+
+/* Titre principal */
+.altaquest h1 {
+    font-size: 4.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    background: linear-gradient(45deg, #ffffff, #a0d3ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #00f2fe, 0 0 10px #00f2fe, 0 0 15px #00f2fe; }
+    to { text-shadow: 0 0 10px #4facfe, 0 0 20px #4facfe, 0 0 30px #4facfe; }
+}
+
+/* Sous-titre */
+.altaquest .projet-tagline {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #a0d3ff;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeIn 2s forwards 1s;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Cartes des fonctionnalités */
+.altaquest .feature {
+    background: rgba(10, 36, 114, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.altaquest .feature::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(79, 172, 254, 0.1) 0%, transparent 70%);
+    transform: rotate(0deg);
+    transition: all 0.5s ease;
+}
+
+.altaquest .feature:hover::before {
+    transform: rotate(180deg);
+}
+
+.altaquest .feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+}
+
+.altaquest .feature i {
+    font-size: 3rem;
+    color: #4facfe;
+    margin-bottom: 1rem;
+}
+
+.altaquest .feature h3 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.altaquest .feature p {
+    color: #a0d3ff;
+}
+
+/* Boutons */
+.altaquest .btn-primary {
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    color: #001f3f;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.altaquest .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    transform: scale(0);
+    transition: all 0.5s ease;
+}
+
+.altaquest .btn-primary:hover::before {
+    transform: scale(1);
+}
+
+.altaquest .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+}
+
+/* Vidéo de démonstration */
+.altaquest .demo-video {
+    border: 3px solid #4facfe;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(79, 172, 254, 0.3);
+    transition: all 0.3s ease;
+}
+
+.altaquest .demo-video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 242, 254, 0.5);
+}
+
+/* Styles spécifiques à AltaCom */
+.altacom {
+    background: linear-gradient(45deg, #001f3f, #0a3d62);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.altacom::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, rgba(79, 172, 254, 0.1) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(79, 172, 254, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: gridPulse 4s infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes gridPulse {
+    0% {
+        opacity: 0.3;
+        background-size: 30px 30px;
+    }
+    100% {
+        opacity: 0.6;
+        background-size: 32px 32px;
+    }
+}
+
+.altacom .network-bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 200vw;
+    height: 200vh;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: networkRotate 60s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes networkRotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.altacom .projet-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../img/network-nodes.png') center/cover no-repeat;
+    opacity: 0.2;
+    animation: nodePulse 10s ease-in-out infinite;
+    pointer-events: none;
+    filter: blur(2px);
+}
+
+@keyframes nodePulse {
+    0%, 100% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.05); opacity: 0.3; }
+}
+
+.altacom h1 {
+    font-size: 5rem;
+    color: #4facfe;
+    text-shadow: 0 0 10px rgba(79, 172, 254, 0.7);
+    animation: textGlow 3s ease-in-out infinite, textFloat 6s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(79, 172, 254, 0.7); }
+    50% { text-shadow: 0 0 20px rgba(79, 172, 254, 1), 0 0 30px rgba(79, 172, 254, 0.5); }
+}
+
+@keyframes textFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.altacom .projet-tagline {
+    font-size: 1.8rem;
+    color: #00f2fe;
+    opacity: 0;
+    animation: fadeInUp 1.5s forwards 0.5s, taglineGlow 3s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes taglineGlow {
+    0%, 100% { text-shadow: 0 0 5px rgba(0, 242, 254, 0.5); }
+    50% { text-shadow: 0 0 15px rgba(0, 242, 254, 0.8), 0 0 25px rgba(0, 242, 254, 0.5); }
+}
+
+.altacom .feature {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    transition: all 0.5s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.altacom .feature::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(79, 172, 254, 0.2) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease-out;
+}
+
+.altacom .feature:hover::before {
+    transform: scale(1);
+}
+
+.altacom .feature:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+    border-color: rgba(79, 172, 254, 0.6);
+}
+
+.altacom .feature i {
+    font-size: 3rem;
+    color: #00f2fe;
+    animation: iconFloat 3s ease-in-out infinite, iconGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes iconGlow {
+    0% { text-shadow: 0 0 5px rgba(0, 242, 254, 0.5); }
+    100% { text-shadow: 0 0 20px rgba(0, 242, 254, 1), 0 0 30px rgba(0, 242, 254, 0.5); }
+}
+
+.altacom .btn-primary {
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    border: none;
+    color: #001f3f;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.altacom .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease-out;
+    pointer-events: none;
+}
+
+.altacom .btn-primary:hover::before {
+    transform: scale(1);
+}
+
+.altacom .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(79, 172, 254, 0.4);
+}
+
+.altacom .demo-video {
+    border: 2px solid #4facfe;
+    box-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
+    transition: all 0.3s ease;
+    animation: videoPulse 4s infinite alternate;
+}
+
+@keyframes videoPulse {
+    0% { box-shadow: 0 0 20px rgba(79, 172, 254, 0.5); }
+    100% { box-shadow: 0 0 40px rgba(79, 172, 254, 0.8), 0 0 60px rgba(0, 242, 254, 0.5); }
+}
+
+.altacom .demo-video:hover {
+    transform: scale(1.02);
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+    .projet-hero h1 {
+        font-size: 3rem;
+    }
+
+    .demo-container {
+        flex-direction: column;
+    }
+
+    .feature {
+        padding: 1.5rem;
+    }
+
+    .altaquest::before,
+    .altacom::before,
+    .altacom .network-bg,
+    .altashield::before {
+        background-size: 25px 25px;
+    }
+
+    .altaquest .feature::before,
+    .altacom .projet-hero::after,
+    .altashield .projet-hero::after {
+        display: none; /* Désactive certaines animations complexes sur mobile */
+    }
+}

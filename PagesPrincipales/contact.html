@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AltaDev Group - Contact</title>
+    <link rel="icon" type="image/png" href="../img/bgless altadevlogo.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+
+    <div id="particles-js"></div>
+    <div id="content-wrapper">
+        <header>
+            <nav>
+                <img src="../img/logo-altadev.jpg" alt="Logo AltaDev" class="logo">
+                <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href ="equipe.html">Notre équipe</a></li>
+                </ul>
+                <button class="menu-toggle">☰</button>
+            </nav>
+        </header>
+        <main>
+            <section class="content-section" style="padding: 4rem 0; background-color: rgba(10, 10, 31, 0.9);">
+                <div class="container">
+                    <form id="contact-form" class="scroll-reveal">
+                        <input type="text" id="nom" placeholder="Votre nom" required style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid var(--primary-color); border-radius: 5px; background-color: rgba(255, 255, 255, 0.1); color: var(--text-color);">
+                        <input type="email" id="email" placeholder="Votre email" required style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid var(--primary-color); border-radius: 5px; background-color: rgba(255, 255, 255, 0.1); color: var(--text-color);">
+                        
+                        <select id="service" required style="
+                            width: 100%; 
+                            padding: 1rem; 
+                            margin-bottom: 1rem; 
+                            border: 2px solid var(--primary-color); 
+                            border-radius: 5px; 
+                            background-color: rgba(255, 255, 255, 0.1); 
+                            color: var(--text-color);
+                            appearance: none; /* Supprime l'apparence par défaut */
+                            background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' fill=\'%2300ffff\'%3E%3Cpath d=\'M5.5 7L10 11l4.5-4H5.5z\'/%3E%3C/svg%3E'); /* Flèche personnalisée */
+                            background-repeat: no-repeat;
+                            background-position: right 10px center;
+                            background-color: rgba(10,10,31,0.9); /* Couleur de fond personnalisée */
+                        ">
+                            <option value="" disabled selected>Choisissez un service</option>
+                            <option value="Jeu vidéo">Jeu vidéo</option>
+                            <option value="Site web">Site web</option>
+                            <option value="Application">Application</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+            
+                        <textarea id="message" placeholder="Votre message ou suggestions supplémentaires..." required style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 2px solid var(--primary-color); border-radius: 5px; background-color: rgba(255, 255, 255, 0.1); color: var(--text-color);"></textarea>
+            
+                        <button type="button" class="cta-button" onclick="sendEmail()" style="
+                            background-color: var(--primary-color);
+                            color: var(--background-color);
+                            padding: 1rem 2rem;
+                            border: none;
+                            border-radius: 50px;
+                            cursor: pointer;
+                            font-family: 'Orbitron', sans-serif;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            letter-spacing: .1em;
+                            transition: all .3s ease;
+                            position: relative;
+                            overflow: hidden;">
+                            Envoyer
+                        </button>
+                    </form>
+                </div>
+            </section>
+            
+            <script>
+            function sendEmail() {
+                const nom = document.getElementById('nom').value;
+                const email = document.getElementById('email').value;
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value;
+            
+                const subject = encodeURIComponent("Nouveau message depuis le site web");
+                const body = encodeURIComponent(`Nom: ${nom}\nEmail: ${email}\nService: ${service}\nMessage: ${message}`);
+            
+                window.location.href = `mailto:altadevcontact@gmail.com?subject=${subject}&body=${body}`;
+            }
+            </script>
+            
+            
+            
+        </main>
+        <footer>
+            <div class="footer-wave">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>À propos d'AltaDev</h3>
+                        <p>Pionnier dans le développement de solutions technologiques de pointe.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Liens rapides</h3>
+                        <ul>
+                            <li><a href="../index.html">Accueil</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="boutique.html">Boutique</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href ="equipe.html">Notre équipe</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Suivez-nous</h3>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://github.com/AltaDevteam" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://discord.gg/62gacKmmUS" aria-label="Discord" target="_blank"><i class="fab fa-discord"></i></a>
+                            <a href="https://www.instagram.com/altateamdev/profilecard/?igsh=MW9ka3kzeTlqZW9xbw==" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AltaDev Group. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </div>
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

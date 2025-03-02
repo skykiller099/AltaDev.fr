@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Challenges de hacking éthique du L'Ombre Numérique">
+    <title>Challenges - L'Ombre Numérique</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/dark-theme.css">
+    <link rel="stylesheet" href="../css/challenges.css">
+</head>
+<body>
+    <div id="background" aria-hidden="true"></div>
+    
+    <header>
+        <h1 id="server-name" class="glitch">L'Ombre Numérique</h1>
+        <nav>
+            <ul>
+                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="discussions.html">Discussions</a></li>
+                <li><a href="ressources.html">Ressources</a></li>
+                <li><a href="challenges.html" class="active">Challenges</a></li>
+                <li><a href="credits.html" class="active">Crédits</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="content">
+        <h2 class="cyber-glitch">Arène Virtuelle de L'Ombre Numérique</h2>
+        <section class="challenges-container">
+            <div class="challenges-list">
+                <article class="challenge-item" data-difficulty="easy" id="base64-challenge">
+                    <div class="challenge-header">
+                        <h3>Déchiffrement de Base64</h3>
+                        <span class="difficulty">Facile</span>
+                    </div>
+                    <p>Déchiffrez le message codé en Base64 pour révéler le secret.</p>
+                    <div class="challenge-footer">
+                        <span class="points">100 points</span>
+                        <button class="btn cyber-btn start-challenge" data-challenge="base64">Commencer</button>
+                    </div>
+                </article>
+                <article class="challenge-item" data-difficulty="medium" id="sql-challenge">
+                    <div class="challenge-header">
+                        <h3>Injection SQL</h3>
+                        <span class="difficulty">Moyen</span>
+                    </div>
+                    <p>Exploitez une vulnérabilité SQL pour accéder à des données protégées.</p>
+                    <div class="challenge-footer">
+                        <span class="points">250 points</span>
+                        <button class="btn cyber-btn start-challenge" data-challenge="sql">Commencer</button>
+                    </div>
+                </article>
+                <article class="challenge-item" data-difficulty="hard" id="reverse-challenge">
+                    <div class="challenge-header">
+                        <h3>Reverse Engineering</h3>
+                        <span class="difficulty">Difficile</span>
+                    </div>
+                    <p>Analysez le code assembleur pour trouver le flag caché.</p>
+                    <div class="challenge-footer">
+                        <span class="points">500 points</span>
+                        <button class="btn cyber-btn start-challenge" data-challenge="reverse">Commencer</button>
+                    </div>
+                </article>
+            </div>
+            <div id="challenge-workspace" class="challenge-workspace">
+                <!-- Le contenu du défi sera chargé ici dynamiquement -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 L'Ombre Numérique | Altadev - L'Épreuve Ultime</p>
+    </footer>
+
+    <script src="../js/three-background.js" defer></script>
+    <script src="../js/animations.js" defer></script>
+    <script src="../js/nom-serveur.js" defer></script>
+    <script src="../js/challenges.js" defer></script>
+</body>
+</html>

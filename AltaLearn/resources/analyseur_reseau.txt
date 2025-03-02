@@ -1,0 +1,460 @@
+Analyseur de Réseau Avancé
+
+Table des matières :
+1. Introduction à l'analyse de réseau
+2. Capture de paquets
+3. Analyse de protocoles
+4. Détection d'intrusion et d'anomalies
+5. Analyse de la performance réseau
+6. Forensique réseau
+7. Visualisation du trafic réseau
+8. Analyse des réseaux sans fil
+9. Sécurisation basée sur l'analyse réseau
+10. Tendances et défis futurs
+
+1. Introduction à l'analyse de réseau
+
+1.1 Importance de l'analyse de réseau dans la cybersécurité
+
+L'analyse de réseau est cruciale pour :
+- Détecter les menaces de sécurité
+- Optimiser les performances du réseau
+- Résoudre les problèmes de connectivité
+- Assurer la conformité réglementaire
+
+1.2 Principes fondamentaux des réseaux (modèle OSI, TCP/IP)
+
+Modèle OSI (7 couches) :
+1. Physique
+2. Liaison de données
+3. Réseau
+4. Transport
+5. Session
+6. Présentation
+7. Application
+
+Modèle TCP/IP (4 couches) :
+1. Accès réseau
+2. Internet
+3. Transport
+4. Application
+
+1.3 Types d'analyse de réseau (passive vs active)
+
+Analyse passive :
+- Observation du trafic sans interaction
+- Avantages : non-intrusive, indétectable
+- Outils : Wireshark, tcpdump
+
+Analyse active :
+- Injection de paquets ou requêtes dans le réseau
+- Avantages : plus d'informations, tests de réponse
+- Outils : Nmap, hping3
+
+2. Capture de paquets
+
+2.1 Techniques de capture de paquets
+
+a) Capture en mode promiscuous :
+   - Capture tout le trafic sur le segment réseau
+   - Configuration dans Wireshark :
+     Capture > Options > [Interface] > Capture packets in promiscuous mode
+
+b) Capture en mode monitor (pour le Wi-Fi) :
+   - Capture tous les paquets Wi-Fi, y compris les trames de gestion
+   - Activation du mode monitor :
+     sudo airmon-ng start wlan0
+
+2.2 Outils de capture
+
+2.2.1 Wireshark
+
+Installation sur Ubuntu :
+sudo apt-get update
+sudo apt-get install wireshark
+
+Interface utilisateur :
+- Barre de filtrage
+- Liste des paquets
+- Détails des paquets
+- Bytes bruts
+
+Filtres de capture :
+- Syntaxe : <protocole> <direction> <hôte> <valeur>
+- Exemple : tcp port 80 and host 192.168.1.1
+
+Enregistrement et lecture de captures :
+- Enregistrer : File > Export Specified Packets
+- Lire : File > Open
+
+2.2.2 tcpdump
+
+Syntaxe de base :
+tcpdump [options] [expression]
+
+Exemple de capture basique :
+sudo tcpdump -i eth0
+
+Options avancées :
+- -n : Ne pas résoudre les noms d'hôtes
+- -X : Afficher le contenu des paquets en ASCII et hex
+- -w file.pcap : Écrire la capture dans un fichier
+
+Exemple de capture avancée :
+sudo tcpdump -i eth0 -n -X 'tcp port 80' -w http_traffic.pcap
+
+2.3 Considérations légales et éthiques de la capture de paquets
+
+- Obtenir l'autorisation avant de capturer le trafic
+- Respecter la confidentialité des données
+- Se conformer aux réglementations (RGPD, etc.)
+- Utiliser des données anonymisées pour les rapports
+
+3. Analyse de protocoles
+
+3.1 Analyse des protocoles de couche 2 (Ethernet, 802.11)
+
+Ethernet :
+- Structure de trame : Préambule, Adresses MAC, Type, Données, FCS
+- Analyse avec Wireshark : 
+  Filtre : eth
+
+802.11 (Wi-Fi) :
+- Types de trames : Gestion, Contrôle, Données
+- Analyse avec Wireshark :
+  Filtre : wlan
+
+3.2 Analyse des protocoles de couche 3 (IPv4, IPv6, ICMP)
+
+IPv4 :
+- En-tête IP : Version, IHL, ToS, Longueur totale, etc.
+- Analyse avec Wireshark :
+  Filtre : ip
+
+IPv6 :
+- En-tête IPv6 : Version, Classe de trafic, Étiquette de flux, etc.
+- Analyse avec Wireshark :
+  Filtre : ipv6
+
+ICMP :
+- Types de messages : Echo request/reply, Destination unreachable, etc.
+- Analyse avec Wireshark :
+  Filtre : icmp
+
+3.3 Analyse des protocoles de couche 4 (TCP, UDP)
+
+TCP :
+- En-tête TCP : Ports source/destination, Numéro de séquence, Flags, etc.
+- Analyse d'une connexion TCP avec Wireshark :
+  Filtre : tcp.stream eq 0
+
+UDP :
+- En-tête UDP : Ports source/destination, Longueur, Checksum
+- Analyse avec Wireshark :
+  Filtre : udp
+
+3.4 Analyse des protocoles applicatifs
+
+3.4.1 HTTP/HTTPS
+- Méthodes HTTP, Codes de statut, En-têtes
+- Analyse avec Wireshark :
+  Filtre : http
+  Pour HTTPS : ssl.handshake.type == 1
+
+3.4.2 DNS
+- Types d'enregistrements, Requêtes/Réponses
+- Analyse avec Wireshark :
+  Filtre : dns
+
+3.4.3 DHCP
+- Processus DORA (Discover, Offer, Request, Acknowledge)
+- Analyse avec Wireshark :
+  Filtre : dhcp
+
+3.4.4 SMB/CIFS
+- Partage de fichiers et d'imprimantes Windows
+- Analyse avec Wireshark :
+  Filtre : smb || smb2
+
+3.4.5 FTP
+- Commandes FTP, Transferts de données
+- Analyse avec Wireshark :
+  Filtre : ftp || ftp-data
+
+3.4.6 SMTP/POP3/IMAP
+- Protocoles de messagerie
+- Analyse avec Wireshark :
+  Filtres : smtp, pop, imap
+
+3.5 Analyse du trafic chiffré (SSL/TLS)
+
+Handshakes TLS et échanges clés.
+Déchiffrement TLS dans Wireshark:
+1) Edit > Preferences > Protocols > TLS.
+2) (Pre)-Master Secret log filename: [chemin_vers_fichier_log].
+3) Utiliser SSLKEYLOGFILE avec le navigateur.
+
+4 Détection d'intrusion et d'anomalies.
+
+4 Systèmes IDS.
+
+4 Snort: Configuration et utilisation.
+
+Installation:
+sudo apt-get install snort.
+
+Configuration:
+Éditez /etc/snort/snort.conf.
+Définissez les variables HOME_NET et EXTERNAL_NET.
+
+Lancement Snort en mode NIDS:
+sudo snort -c /etc/snort/snort.conf -i eth0.
+
+Création règle simple:
+alert tcp any any -> $HOME_NET 22 (msg:"SSH Connection Attempt"; sid:1000001; rev:1;).
+
+Suricata: Détection multi-threading.
+
+Installation:
+sudo add-repository ppa:oisf/suricata-stable.
+sudo apt-get update.
+sudo apt-get install suricata.
+
+Configuration:
+Éditez /etc/suricata/suricata.yaml.
+
+Lancement Suricata:
+sudo suricata -c /etc/suricata/suricata.yaml -i eth0.
+
+Systèmes IPS.
+
+Configuration Snort en mode IPS:
+sudo snort -c /etc/snort/snort.conf -i eth0 -A full.
+
+Analyse comportementale du réseau NBA.
+
+Outils:
+Zeek anciennement Bro.
+Ntopng.
+
+Installation Zeek:
+sudo apt-get install zeek.
+
+Lancement Zeek:
+zeek -i eth0.
+
+Détection anomalies machine learning.
+
+Outils:
+Scikit-learn pour Python.
+TensorFlow pour apprentissage profond.
+
+Exemple simple Scikit-learn:
+
+```python 
+from sklearn import IsolationForest 
+import numpy as np 
+
+# Données trafic simplifiées 
+X = np.random.rand(1000 ,5 ) # caractéristiques 
+
+# Entraînement modèle 
+clf = IsolationForest(contamination=0 .1 ) 
+clf.fit(X) 
+
+# Prédiction 
+y_pred = clf.predict(X)
+
+5. Performance Réseau
+
+5.1 Mesure de bande passante et latence
+
+Outil : iperf
+
+Installation :
+sudo apt-get install iperf
+
+Test de bande passante :
+Serveur : iperf -s
+Client : iperf -c <adresse_serveur>
+
+Mesure de latence :
+ping <adresse>
+
+5.2 Identification des goulots d'étranglement
+
+Outils :
+- nethogs : voir consommation de bande passante par processus
+- iftop : voir trafic par connexion
+
+Installation :
+sudo apt-get install nethogs iftop
+
+Utilisation :
+sudo nethogs
+sudo iftop
+
+5.3 Outils de test de performance
+
+iperf et netperf
+
+Installation de netperf :
+sudo apt-get install netperf
+
+Test de performance TCP :
+Serveur : netserver
+Client : netperf -H <adresse_serveur>
+
+6. Forensique Réseau
+
+6.1 Collecte et préservation des preuves réseau
+
+Outils :
+- dumpcap (part of Wireshark)
+- tcpdump
+
+Capture continue avec rotation de fichiers :
+dumpcap -i eth0 -b filesize:1024000 -w evidence.pcap
+
+6.2 Analyse des logs réseau
+
+Outils : ELK Stack (Elasticsearch, Logstash, Kibana)
+
+Installation d'ELK :
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt-get update && sudo apt-get install elasticsearch logstash kibana
+
+6.3 Reconstruction de sessions et de fichiers à partir de captures
+
+Outil : NetworkMiner
+
+Utilisation :
+1. Ouvrir NetworkMiner
+2. File > Open > Sélectionner le fichier PCAP
+3. Analyser les onglets (Files, Images, Credentials, etc.)
+
+7. Visualisation du Trafic Réseau
+
+7.1 Outils de visualisation
+
+- Wireshark
+- NetworkMiner
+
+Wireshark - Graphiques :
+Statistics > I/O Graphs
+
+NetworkMiner - Timeline :
+Onglet "Parameters" > Timeline
+
+7.2 Création de graphiques et de rapports
+
+Outil : Matplotlib pour Python
+
+Exemple de script pour visualiser le trafic par protocole :
+
+import matplotlib.pyplot as plt
+from scapy.all import *
+
+packets = rdpcap("capture.pcap")
+protocols = {}
+
+for packet in packets:
+    if IP in packet:
+        proto = packet[IP].proto
+        if proto in protocols:
+            protocols[proto] += 1
+        else:
+            protocols[proto] = 1
+
+plt.pie(protocols.values(), labels=protocols.keys(), autopct='%1.1f%%')
+plt.title("Répartition des protocoles")
+plt.show()
+
+7.3 Techniques de visualisation pour la détection d'anomalies
+
+- Heatmaps pour visualiser les connexions anormales
+- Graphiques de séries temporelles pour les pics de trafic
+
+8. Analyse des Réseaux Sans Fil
+
+8.1 Particularités de l'analyse Wi-Fi
+
+- Capture en mode monitor
+- Analyse des trames de gestion et de contrôle
+
+8.2 Outils spécifiques
+
+Kismet et Aircrack-ng
+
+Kismet :
+Installation : sudo apt-get install kismet
+Utilisation : kismet
+
+Aircrack-ng :
+Installation : sudo apt-get install aircrack-ng
+Capture de trafic : sudo airodump-ng wlan0mon
+
+8.3 Détection et analyse des attaques Wi-Fi
+
+Types d'attaques :
+- Deauthentication
+- Evil Twin
+- KRACK
+
+Détection avec Kismet :
+- Lancer Kismet et observer les alertes
+
+9. Sécurisation Basée Sur L'analyse
+
+9.1 Configuration de pare-feu basée sur l'analyse
+
+Exemple avec iptables :
+sudo iptables -A INPUT -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 4 --name SSH -j DROP
+
+9.2 Segmentation de réseau et VLAN
+
+Configuration de VLAN sur un switch Cisco :
+switch(config)# vlan 10
+switch(config-vlan)# name Finance
+switch(config)# interface fastethernet0/1
+switch(config-if)# switchport access vlan 10
+
+9.3 Mise en place de honey pots et de honey nets
+
+Outil : HoneyDrive
+
+Installation :
+1. Télécharger l'image ISO de HoneyDrive
+2. Créer une VM et installer HoneyDrive
+3. Configurer les honeypots (Kippo, Dionaea, etc.)
+
+10. Tendances et Défis Futurs
+
+10.1 Analyse de réseaux SDN (Software-Defined Networking)
+
+Outils :
+- OpenDaylight
+- ONOS (Open Network Operating System)
+
+10.2 Analyse dans les environnements cloud
+
+Outils :
+- AWS VPC Flow Logs
+- Azure Network Watcher
+
+10.3 Analyse du trafic IoT (Internet of Things)
+
+Défis :
+- Diversité des protocoles (MQTT, CoAP, etc.)
+- Volume massif de données
+- Contraintes de ressources des appareils
+
+Outils émergents :
+- Zolertia Z1 IoT mote pour la capture de trafic IoT
+- ThingSpeak pour l'analyse de données IoT
+
+Conclusion :
+L'analyse de réseau est un domaine en constante évolution, essentiel pour maintenir la sécurité et les performances des infrastructures modernes. Avec l'émergence de nouvelles technologies comme le SDN, le cloud et l'IoT, les analystes réseau doivent continuellement adapter leurs compétences et leurs outils pour relever les défis futurs.
+
+Fin du fichier analyseur_reseau.txt

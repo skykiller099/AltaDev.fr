@@ -1,0 +1,113 @@
+/* jeu-mobile.css */
+
+.hero-section {
+  background-image: url('../img/jeu-mobile-bg.jpg');
+}
+
+.service-details {
+  padding: 4rem 0;
+}
+
+.service-details h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--accent-color);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 0 10px var(--accent-color);
+}
+
+.service-details p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+.service-details h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+}
+
+.service-details ul {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+.service-details ul li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.service-details ul li::before {
+  content: '🎮';
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+.service-details ul li:hover {
+  transform: translateX(10px);
+  color: var(--accent-color);
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-align: center;
+  margin: 2rem 0;
+  text-shadow: 0 0 15px var(--secondary-color);
+}
+
+.cta-button {
+  display: block;
+  width: 250px;
+  margin: 3rem auto 0;
+  text-align: center;
+}
+
+/* Animation spécifique pour cette page */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.bouncing-element {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Effet de survol pour le titre principal */
+.hero-title {
+  transition: all 0.3s ease;
+}
+
+.hero-title:hover {
+  transform: scale(1.1);
+  color: var(--accent-color);
+}
+
+/* Effet de lueur pour les éléments de la liste */
+.service-details ul li::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.service-details ul li:hover::after {
+  transform: scaleX(1);
+}

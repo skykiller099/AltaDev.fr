@@ -1,0 +1,117 @@
+/* e-commerce.css */
+
+.hero-section {
+    background-image: url('../img/e-commerce-bg.jpg');
+  }
+  
+  .service-details {
+    padding: 4rem 0;
+  }
+  
+  .service-details h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--secondary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 0 0 10px var(--secondary-color);
+  }
+  
+  .service-details p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: justify;
+  }
+  
+  .service-details h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+  }
+  
+  .service-details ul {
+    list-style-type: none;
+    padding-left: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .service-details ul li {
+    position: relative;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .service-details ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+  }
+  
+  .service-details ul li::before {
+    content: '🛒';
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-align: center;
+    margin: 2rem 0;
+    text-shadow: 0 0 15px var(--accent-color);
+  }
+  
+  .cta-button {
+    display: block;
+    width: 250px;
+    margin: 3rem auto 0;
+    text-align: center;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.02); }
+    20% { transform: scale(1.04); }
+    30% { transform: scale(1.06); }
+    40% { transform: scale(1.08); }
+    50% { transform: scale(1.1); }
+    60% { transform: scale(1.08); }
+    70% { transform: scale(1.06); }
+    80% { transform: scale(1.04); }
+    90% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+  
+  
+  .pulsing-element {
+    animation: pulse 4s ease-in-out infinite;
+  }
+  
+  /* Effet de survol pour le titre principal */
+  .hero-title:hover {
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+  }
+  
+  /* Effet de lueur pour les sous-titres */
+  .service-details h3 {
+    position: relative;
+  }
+  
+  .service-details h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+  }
+  

@@ -1,0 +1,122 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Courier New', monospace;
+    background-color: #000;
+    color: #0f0;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+header {
+    padding: 20px;
+    background-color: rgba(0, 15, 0, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #0f0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #0f0;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #0f0;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul li a:hover::after {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-content {
+    background-color: rgba(0, 15, 0, 0.6);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 15, 0, 0.8);
+    border-top: 2px solid #0f0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #0f0;
+    border: 2px solid #0f0;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #0f0;
+    color: #000;
+    box-shadow: 0 0 15px #0f0;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .page-content {
+        padding: 20px;
+    }
+}

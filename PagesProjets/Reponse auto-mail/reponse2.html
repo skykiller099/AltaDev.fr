@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation de Réception</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        body {
+            background-color: #0a0c1a;
+            color: #00f0ff;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            background: linear-gradient(145deg, #0e1138, #0a0c1a);
+            border: 2px solid #00f0ff;
+            border-radius: 15px;
+            box-shadow: 
+                0 0 20px rgba(0, 240, 255, 0.4),
+                0 0 50px rgba(0, 240, 255, 0.2);
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                0deg, 
+                transparent, 
+                transparent 10px, 
+                rgba(0, 240, 255, 0.05) 10px, 
+                rgba(0, 240, 255, 0.05) 20px
+            );
+            animation: moveBackground 10s linear infinite;
+        }
+        h1 {
+            text-align: center;
+            color: #00f0ff;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+        }
+        .highlight {
+            color: #00ff9f;
+            font-weight: bold;
+        }
+        .cta-button {
+            display: block;
+            width: 250px;
+            margin: 30px auto;
+            padding: 15px;
+            background: linear-gradient(145deg, #00f0ff, #0077be);
+            color: #0a0c1a;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.5s ease;
+        }
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #00a3cc;
+        }
+        @keyframes moveBackground {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirmaton de Réception</h1>
+        
+        <p>Bonjour <span class="highlight">%from%</span>,</p>
+        
+        <p>Votre demande de contact a bien été reçue par nos services.</p>
+        
+        <ul>
+            <li>📡 Demande reçue et en cours de traitement</li>
+            <li>⏱️ Délai de réponse estimé : 24h maximum</li>
+            <li>🔬 Analyse et traitement en cours par notre équipe de développement</li>
+        </ul>
+        
+        <p>Restez connecté. Une réponse vous sera transmise prochainement.</p>
+        
+        <a href="Altadev" class="cta-button">Notre Site Web</a>
+        
+        <div class="footer">
+            <p>© 2024 AltaDev/p>
+            <p>Transmission Sécurisées by AltaProtect | Technologie de Pointe</p>
+        </div>
+    </div>
+</body>
+</html>

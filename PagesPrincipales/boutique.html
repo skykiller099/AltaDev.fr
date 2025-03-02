@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AltaDev Group - Boutique</title>
+    <link rel="icon" type="image/png" href="../img/bgless altadevlogo.png">
+    <link rel="stylesheet" href="../css/cssBoutique/boutique.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS pour les nouvelles cartes de produits */
+        .product-card-parent {
+            width: 290px;
+            height: 380px;
+            perspective: 1000px;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+
+        .product-card {
+            height: 100%;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            transition: all 0.5s ease-in-out;
+            transform-style: preserve-3d;
+            box-shadow: rgba(0, 255, 255, 0.1) 0px 10px 20px, rgba(255, 0, 255, 0.1) 0px 6px 6px;
+        }
+
+        .glass {
+            transform-style: preserve-3d;
+            position: absolute;
+            inset: 8px;
+            border-radius: 55px;
+            border-top-right-radius: 100%;
+            background: linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+            transform: translate3d(0px, 0px, 25px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .content {
+            padding: 100px 30px 0px 30px;
+            transform: translate3d(0, 0, 26px);
+        }
+
+        .content .title {
+            display: block;
+            color: #00ffff;
+            font-weight: 900;
+            font-size: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .content .text {
+            display: block;
+            color: #ffffff;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+
+        .bottom {
+            padding: 10px 12px;
+            transform-style: preserve-3d;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transform: translate3d(0, 0, 26px);
+        }
+
+        .bottom .price {
+            color: #ff9900;
+            font-weight: bold;
+        }
+
+        .bottom .view-more {
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .bottom .view-more:hover {
+            transform: translate3d(0, 0, 10px);
+        }
+
+        .bottom .view-more .view-more-button {
+            background: none;
+            border: none;
+            color: #00ffff;
+            font-weight: bolder;
+            font-size: 12px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+        }
+
+        .bottom .view-more .svg {
+            fill: none;
+            stroke: #00ffff;
+            stroke-width: 3px;
+            max-height: 15px;
+            margin-left: 5px;
+        }
+
+        .logo {
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform-style: preserve-3d;
+        }
+
+        .logo .circle {
+            display: block;
+            position: absolute;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            top: 0;
+            right: 0;
+            box-shadow: rgba(0, 255, 255, 0.1) -5px 5px 10px 0px;
+            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .logo .circle1 { width: 170px; transform: translate3d(0, 0, 20px); top: 8px; right: 8px; }
+        .logo .circle2 { width: 140px; transform: translate3d(0, 0, 40px); top: 10px; right: 10px; transition-delay: 0.4s; }
+        .logo .circle3 { width: 110px; transform: translate3d(0, 0, 60px); top: 17px; right: 17px; transition-delay: 0.8s; }
+        .logo .circle4 { width: 80px; transform: translate3d(0, 0, 80px); top: 23px; right: 23px; transition-delay: 1.2s; }
+        .logo .circle5 {
+            width: 50px;
+            transform: translate3d(0, 0, 100px);
+            top: 30px;
+            right: 30px;
+            display: grid;
+            place-content: center;
+            transition-delay: 1.6s;
+        }
+
+        .logo .circle5 i {
+            font-size: 20px;
+            color: #00ffff;
+        }
+
+        .product-card-parent:hover .product-card {
+            transform: rotate3d(1, 1, 0, 30deg);
+            box-shadow: rgba(0, 255, 255, 0.2) 30px 50px 25px -40px, rgba(255, 0, 255, 0.2) 0px 25px 30px 0px;
+        }
+
+        .product-card-parent:hover .product-card .logo .circle2 { transform: translate3d(0, 0, 60px); }
+        .product-card-parent:hover .product-card .logo .circle3 { transform: translate3d(0, 0, 80px); }
+        .product-card-parent:hover .product-card .logo .circle4 { transform: translate3d(0, 0, 100px); }
+        .product-card-parent:hover .product-card .logo .circle5 { transform: translate3d(0, 0, 120px); }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div id="content-wrapper">
+        <header>
+            <nav>
+                <img src="../img/logo-altadev.jpg" alt="Logo AltaDev" class="logo">
+              
+                <button class="menu-toggle">☰</button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Boutique AltaDev</h1>
+                    <p class="hero-subtitle">Découvrez nos services de développement sur mesure</p>
+                </div>
+            </section>
+            
+            <section id="sites-web">
+                <h2>Sites Web</h2>
+                <div class="product-grid">
+                    <div class="product-card-parent" onclick="location.href='../PagesBoutiques/site-vitrine.html';">
+                        <div class="product-card">
+                            <div class="logo">
+                                <span class="circle circle1"></span>  <ul>
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="boutique.html">Boutique</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href ="equipe.html">Notre équipe</a></li>
+                </ul>
+                                <span class="circle circle2"></span>
+                                <span class="circle circle3"></span>
+                                <span class="circle circle4"></span>
+                                <span class="circle circle5">
+                                <i class="fas fa-laptop"></i>
+                                </span>
+                            </div>
+                            <div class="glass"></div>
+                            <div class="content">
+                                <span class="title">Site Vitrine</span>
+                                <span class="text">Présentez votre entreprise avec élégance</span>
+                            </div>
+                            <div class="bottom">
+                                <span class="price">À partir de À partir de 200€</span>
+                                <div class="view-more">
+                                    <span class="view-more-button">En savoir plus</span>
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card-parent" onclick="location.href='../PagesBoutiques/e-commerce.html';">
+                        <div class="product-card">
+                            <div class="logo">
+                                <span class="circle circle1"></span>
+                                <span class="circle circle2"></span>
+                                <span class="circle circle3"></span>
+                                <span class="circle circle4"></span>
+                                <span class="circle circle5">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </span>
+                            </div>
+                            <div class="glass"></div>
+                            <div class="content">
+                                <span class="title">E-Commerce</span>
+                                <span class="text">Vendez en ligne avec une boutique performante</span>
+                            </div>
+                            <div class="bottom">
+                                <span class="price">À partir de 200€</span>
+                                <div class="view-more">
+                                    <span class="view-more-button">En savoir plus</span>
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="jeux-video">
+                <h2>Jeux Vidéo</h2>
+                <div class="product-grid">
+                    <div class="product-card-parent" onclick="location.href='../PagesBoutiques/jeu-mobile.html';">
+                        <div class="product-card">
+                            <div class="logo">
+                                <span class="circle circle1"></span>
+                                <span class="circle circle2"></span>
+                                <span class="circle circle3"></span>
+                                <span class="circle circle4"></span>
+                                <span class="circle circle5">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </span>
+                            </div>
+                            <div class="glass"></div>
+                            <div class="content">
+                                <span class="title">Jeu Mobile</span>
+                                <span class="text">Créez un jeu addictif pour smartphones</span>
+                            </div>
+                            <div class="bottom">
+                                <span class="price">À partir de À partir de 200€</span>
+                                <div class="view-more">
+                                    <span class="view-more-button">En savoir plus</span>
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card-parent" onclick="location.href='../PagesBoutiques/jeu-pc.html';">
+                        <div class="product-card">
+                            <div class="logo">
+                                <span class="circle circle1"></span>
+                                <span class="circle circle2"></span>
+                                <span class="circle circle3"></span>
+                                <span class="circle circle4"></span>
+                                <span class="circle circle5">
+                                    <i class="fas fa-desktop"></i>
+                                </span>
+                            </div>
+                            <div class="glass"></div>
+                            <div class="content">
+                                <span class="title">Jeu PC</span>
+                                <span class="text">Développez un jeu immersif pour ordinateurs</span>
+                            </div>
+                            <div class="bottom">
+                                <span class="price">À partir de À partir de 200€</span>
+                                <div class="view-more">
+                                    <span class="view-more-button">En savoir plus</span>
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="applications">
+                <h2>Applications</h2>
+                <div class="product-grid">
+                    <div class="product-card-parent" onclick="location.href='../PagesBoutiques/app-mobile.html';">
+                        <div class="product-card">
+                            <div class="logo">
+                                <span class="circle circle1"></span>
+                                <span class="circle circle2"></span>
+                                <span class="circle circle3"></span>
+                                <span class="circle circle4"></span>
+                                <span class="circle circle5">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </span>
+                            </div>
+                            <div class="glass"></div>
+                            <div class="content">
+                                <span class="title">Application Mobile
+                                </span>
+                                <span class="text">Créez une app native pour iOS et Android</span>
+                            </div>
+                            <div class="bottom">
+                                <span class="price">À partir de 200€</span>
+                                <div class="view-more">
+                                    <span class="view-more-button">En savoir plus</span>
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card-parent" onclick="location.href='../PagesBoutiques/app-web.html';">
+                        <div class="product-card">
+                            <div class="logo">
+                                <span class="circle circle1"></span>
+                                <span class="circle circle2"></span>
+                                <span class="circle circle3"></span>
+                                <span class="circle circle4"></span>
+                                <span class="circle circle5">
+                                    <i class="fas fa-globe"></i>
+                                </span>
+                            </div>
+                            <div class="glass"></div>
+                            <div class="content">
+                                <span class="title">Application Web</span>
+                                <span class="text">Développez une application web responsive</span>
+                            </div>
+                            <div class="bottom">
+                                <span class="price">À partir de À partir de 200€</span>
+                                <div class="view-more">
+                                    <span class="view-more-button">En savoir plus</span>
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-wave">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>À propos d'AltaDev</h3>
+                        <p>Pionnier dans le développement de solutions technologiques de pointe.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Liens rapides</h3>
+                        <ul>
+                            <li><a href="../index.html">Accueil</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="boutique.html">Boutique</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href ="equipe.html">Notre équipe</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Suivez-nous</h3>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://github.com/AltaDevteam" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://discord.gg/62gacKmmUS" aria-label="Discord" target="_blank"><i class="fab fa-discord"></i></a>
+                            <a href="https://www.instagram.com/altateamdev/profilecard/?igsh=MW9ka3kzeTlqZW9xbw==" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AltaDev Group. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../js/boutique.js"></script>
+</body>
+</html>

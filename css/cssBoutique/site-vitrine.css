@@ -1,0 +1,100 @@
+/* site-vitrine.css */
+
+.hero-section {
+    background-image: url('../img/site-vitrine-bg.jpg');
+  }
+  
+  .service-details {
+    padding: 4rem 0;
+  }
+  
+  .service-details h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 0 0 10px var(--primary-color);
+  }
+  
+  .service-details p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: justify;
+  }
+  
+  .service-details h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+  }
+  
+  .service-details ul {
+    list-style-type: none;
+    padding-left: 1rem;
+  }
+  
+  .service-details ul li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .service-details ul li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+  }
+  
+  .price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-align: center;
+    margin: 2rem 0;
+    text-shadow: 0 0 10px var(--accent-color);
+  }
+  
+  .cta-button {
+    display: block;
+    width: 200px;
+    margin: 3rem auto 0;
+    text-align: center;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    10% { transform: translateY(-5px); }
+    20% { transform: translateY(-10px); }
+    30% { transform: translateY(-15px); }
+    40% { transform: translateY(-20px); }
+    50% { transform: translateY(-15px); }
+    60% { transform: translateY(-10px); }
+    70% { transform: translateY(-5px); }
+    80% { transform: translateY(0px); }
+    90% { transform: translateY(5px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .floating-element {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Effet de survol pour les éléments de la liste */
+  .service-details ul li:hover {
+    transform: translateX(10px);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Effet de lueur pour le titre principal */
+  .hero-title {
+    text-shadow: 0 0 10px var(--primary-color),
+                 0 0 20px var(--primary-color),
+                 0 0 30px var(--primary-color),
+                 0 0 40px var(--primary-color);
+  }
+  

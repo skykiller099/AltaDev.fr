@@ -1,0 +1,29 @@
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #ffffff;
+    --accent-color: #ffffff;
+    --secondary-color: #1a1a1a;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+a {
+    color: var(--accent-color);
+}
+
+a:hover {
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.btn {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.btn:hover {
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+}
